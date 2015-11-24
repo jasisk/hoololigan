@@ -4,7 +4,7 @@ var path = require('path');
 
 module.exports = [{
   output: {
-    path: path.resolve(__dirname, '..', 'dist', 'entry'),
+    path: path.resolve(__dirname, '..', 'build', 'entry'),
     publicPath: '/',
     filename: '[name].js',
     libraryTarget: 'commonjs2'
@@ -36,7 +36,7 @@ module.exports = [{
   ]
 }, {
   output: {
-    path: path.resolve(__dirname, '..', 'dist', 'entry'),
+    path: path.resolve(__dirname, '..', 'build', 'entry'),
     publicPath: '/',
     filename: '[name].js'
   },

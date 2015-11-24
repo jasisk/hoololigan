@@ -31,9 +31,9 @@
     "webpack-hot-middleware": "^2.5.0"
   },
   "scripts": {
-    "build-webpack": "NODE_ENV=production webpack --config webpack/webpack.config.prod.js -p",
-    "build-server": "babel server/ --copy-files --out-dir dist/ --plugins transform-runtime",
-    "build-production": "npm run build-app && npm run build-server",
+    "build-webpack": "webpack --config webpack/webpack.config.prod.js -p",
+    "build-server": "babel server/ --copy-files --out-dir build/ --plugins transform-runtime",
+    "build": "NODE_ENV=production npm run build-webpack && npm run build-server",
     "start": "babel-node server",
     "start-production": "NODE_ENV=production node dist",
     "test": "echo \"Error: no test specified\" && exit 1"
