@@ -1,0 +1,11 @@
+{
+  "middleware": {
+    "devServer": {
+      "priority": 119,
+      "module": {
+        "name": "path:./lib/webpack-dev-middleware",
+        "arguments": [ "require:../webpack/webpack.config.dev.js" ]
+      }
+    }
+  }
+}
