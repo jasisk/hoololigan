@@ -1,0 +1,12 @@
+{
+  "middleware": {
+    "webpackStatic": {
+      "priority": 41, // right after static
+      "module": {
+        "name": "express",
+        "method": "static",
+        "arguments": [ "path:./entry" ]
+      }
+    }
+  }
+}
