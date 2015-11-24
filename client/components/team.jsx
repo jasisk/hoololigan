@@ -1,7 +1,5 @@
 import React, { PropTypes } from 'react';
-const style = {
-  'list-item': ''
-};
+import style from './team.css';
 
 export default function Team(props) {
   const { color, name, votes, text, vote, idx } = props;
@@ -17,8 +15,8 @@ export default function Team(props) {
 Team.propTypes = {
   idx: PropTypes.number.isRequired,
   vote: PropTypes.func.isRequired,
-  color: PropTypes.string.isRequired,
   votes: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
-  text: PropTypes.string.isRequired
+  text: PropTypes.string.isRequired,
+  color: PropTypes.string
 };

@@ -7,8 +7,8 @@
       "module": {
         "name": "swaggerize-express",
         "arguments": [{
-          "handlers": "path:./api/handlers",
-          "api": "require:./api/spec.json",
+          "handlers": "require:./api/handlers",
+          "api": "require:./api/spec",
           "docspath": "/docs"
         }]
       }

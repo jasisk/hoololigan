@@ -2,10 +2,10 @@
   "swagger": "2.0",
   "info": {
     "version": "1.0.0",
-    "title": "Swagger Petstore",
+    "title": "Hoololigans",
     "contact": {
-      "name": "Swagger API Team",
-      "url": "http://swagger.io"
+      "name": "Jean-Charles Sisk",
+      "url": "http://hoololigans.co.uk"
     },
     "license": {
       "name": "Creative Commons 4.0 International",
@@ -16,17 +16,42 @@
     "http"
   ],
   "paths": {
-    "/pets": {
+    "/vote/{teamName}": {
       "get": {
-        "tags": [ "Pet Operations" ],
-        "summary": "finds pets in the system",
+        "tags": [ "Vote Action" ],
+        "summary": "votes for team",
+        "responses": {
+          "204": {
+            "description": "vote action response"
+          },
+          "default": {
+            "description": "unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "parameters": [
+        {
+          "name": "teamName",
+          "in": "path",
+          "required": true,
+          "type": "string"
+        }
+      ]
+    },
+    "/teams": {
+      "get": {
+        "tags": [ "Team Operations" ],
+        "summary": "returns a list of teams",
         "responses": {
           "200": {
-            "description": "pet response",
+            "description": "team response",
             "schema": {
               "type": "array",
               "items": {
-                "$ref": "#/definitions/Pet"
+                "$ref": "#/definitions/Team"
               }
             },
             "headers": {
@@ -46,21 +71,25 @@
     }
   },
   "definitions": {
-    "Pet": {
+    "Team": {
       "type": "object",
       "required": [
-        "id",
-        "name"
+        "votes",
+        "name",
+        "text"
       ],
       "properties": {
-        "id": {
+        "votes": {
           "type": "integer",
           "format": "int64"
         },
         "name": {
           "type": "string"
         },
-        "tag": {
+        "color": {
+          "type": "string"
+        },
+        "text": {
           "type": "string"
         }
       }

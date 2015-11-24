@@ -1,29 +1,65 @@
-import TeamList from './team-list';
 import React, { Component } from 'react';
+import fetch from 'isomorphic-fetch';
+import TeamList from './team-list';
+
+function defaultFetch(path) {
+  const request = fetch(path, {
+    headers: { 'accept': 'application/json' },
+    method: 'GET'
+  });
+
+  const checkStatus = response => {
+    if (response.status < 200 || response.status >= 300) {
+      throw new Error('cannot fetch from api'); // this error handling is bad
+    }
+    return response;
+  }
+
+  return request
+    .then(checkStatus);
+}
 
 export default class App extends Component {
-  vote(idx) {
-    const team = this.state.teams[idx];
-    team.votes += 1;
-    const state = [ ...this.state.teams.slice(0, idx),
-                    team,
-                    ...this.state.teams.slice(idx + 1) ];
-    this.setState(state);
+  updateState() {
+    const request = defaultFetch('/api/teams');
+
+    return request
+      .then(response => response.json())
+      .then(json => {
+        this.setState({ teams: json });
+      })
   }
-  
+
+  vote(idx) {
+    const state = this.state.teams;
+    const team = state[idx];
+    const votes = team.votes;
+    const newState = [ ...state.slice(0, idx),
+                    { ...team, votes: votes + 1 },
+                    ...state.slice(idx + 1) ];
+    this.setState({ teams: newState });
+
+    //new Promise((_, reject) => setTimeout(() => reject(), 1 * 1000))
+    defaultFetch(`/api/vote/${team.name}`)
+      .catch(e => this.setState({ teams: state }))
+      .then(response => this.updateState());
+  }
+
   constructor(props) {
     super(props);
     this.state = {
-      teams: [
-        { name: 'patriots', color: 'navy', votes: 0, text: 'New England Patriots' },
-        { name: 'united', color: 'black', votes: 0, text: 'Manchester United' },
-        { name: 'city', color: 'red', votes: 0, text: 'Manchester City' }
-      ]
+      teams: []
     };
   }
 
   render() {
     const { teams } = this.state;
     return <TeamList teams={teams} vote={this.vote.bind(this)} />;
+  }
+
+  componentDidMount() {
+    this.updateState().catch(e => {
+      throw new Error(e);
+    });
   }
 }

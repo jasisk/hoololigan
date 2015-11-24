@@ -8,11 +8,11 @@ module.exports = {
     filename: '[name].js'
   },
   entry: {
-    client: ['webpack-hot-middleware/client', path.resolve(__dirname, '../', 'client', 'entry')]
+    client: [path.resolve(__dirname, '../', 'client', 'entry'), 'webpack-hot-middleware/client?reload=true']
   },
   module: {
     loaders: [
-      { test: /\.jsx?$/, exclude: /node_modules/, loaders: [ 'babel' ] },
+      { test: /\.jsx?$/, exclude: /node_modules/, loaders: [ 'react-hot', 'babel' ] },
       { test: /\.css$/, loaders: [ 'style', 'css?modules' ] },
       { test: /\.png$/, loaders: [ 'file' ] }
     ]
