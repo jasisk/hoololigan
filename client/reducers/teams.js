@@ -3,7 +3,8 @@ import { combineReducers } from 'redux';
 import {
   VOTE_REQUESTED,
   VOTE_SUCCEEDED,
-  VOTE_FAILED
+  VOTE_FAILED,
+  VOTE_UPDATED
 } from '../constants/action-types';
 
 const name = (state = 'team') => state;
@@ -37,6 +38,8 @@ function votes(state = 0, action) {
     return state + 1;
   case VOTE_FAILED:
     return state - 1;
+  case VOTE_UPDATED:
+    return action.count;
   default:
     return state;
   }

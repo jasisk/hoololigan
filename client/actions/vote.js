@@ -1,4 +1,3 @@
-import DB from '../../db/super-amazing-nosql-cassandra-rethink-mongo-hyper-turbo-shard-cdrom-database';
 import fetch from 'isomorphic-fetch';
 
 import {
