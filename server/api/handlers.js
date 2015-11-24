@@ -1,4 +1,4 @@
-import DB from '../lib/super-amazing-nosql-cassandra-rethink-mongo-hyper-turbo-shard-cdrom-database';
+import DB from '../../db/super-amazing-nosql-cassandra-rethink-mongo-hyper-turbo-shard-cdrom-database';
 
 export default {
   teams: {
