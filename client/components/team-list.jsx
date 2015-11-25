@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
-import style from './team-list.css';
 import Team from './team';
+const style={list: 'list'};
 
 export default function TeamList(props) {
   const { teams, vote } = props;

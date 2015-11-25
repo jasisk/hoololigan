@@ -5,7 +5,7 @@
       "module": {
         "name": "express",
         "method": "static",
-        "arguments": [ "path:./entry" ]
+        "arguments": [ "path:../build/entry" ]
       }
     }
   }

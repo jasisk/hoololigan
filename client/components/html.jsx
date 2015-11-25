@@ -1,19 +1,17 @@
-import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom/server';
 import React from 'react';
 
 export default function Html(props) {
-  const { store, component } = this.props;
-  const content = component ? ReactDOM.renderToString(component) : '';
+  const { store, children } = props;
+  const content = children ? ReactDOM.renderToString(children) : '';
   return (
     <html>
       <head>
-        <title>{title}</title>
-        <link href='app.css' rel='stylesheet' type='text/css' />
       </head>
       <body>
         <div id='content' dangerouslySetInnerHTML={{__html: content}} />
-        <script dangerouslySetInnerHTML={{__html: `window.__data = ${store.getState()};`}} />
-        <script src='client.js' />
+        <script dangerouslySetInnerHTML={{__html: `window.__data = ${JSON.stringify(store.getState())};`}} />
+        <script src='/client.js' />
       </body>
     </html>
   );

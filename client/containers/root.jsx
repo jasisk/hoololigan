@@ -6,11 +6,10 @@ import DevTools from './dev-tools';
 import routes from '../routes';
 
 const Root = props => {
-  let router;
-  if (process.env.BROWSER) {
+  let router = '';
+  if (process.env.BROWSER === true) {
     router = <Router history={createBrowserHistory()} routes={routes} />;
   } else {
-    //router = <Router history={createBrowserHistory()} routes={routes} />;
     router = <RoutingContext {...props.renderProps} />
   }
   return (

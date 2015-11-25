@@ -7,7 +7,7 @@ import DB from '../db/super-amazing-nosql-cassandra-rethink-mongo-hyper-turbo-sh
 
 export default function init(nodeId = 'content') {
   const node = document.getElementById(nodeId);
-  const store = configureStore(DB);
+  const store = configureStore(window.__data);
 
   ReactDOM.render(<Root store={store} />, node); 
 }
