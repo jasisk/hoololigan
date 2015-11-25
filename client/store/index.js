@@ -13,7 +13,6 @@ if (process.env.NODE_ENV !== 'production' && process.env.BROWSER) {
     DevTools.instrument(),
     persistState( window.location.href.match(/[?&]debug_session=([^&]+)\b/))
   )(createStore);
-
 } else {
   createStoreWithMiddleware = compose(
     applyMiddleware(thunk)

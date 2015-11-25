@@ -27,9 +27,8 @@ module.exports = [{
   plugins: [
     new ExtractTextPlugin('[name].css', {allChunks: true}),
     new webpack.DefinePlugin({
-      __DEVTOOLS__: false,
-      __BROWSER__: false,
       'process.env': {
+        BROWSER: false,
         NODE_ENV: JSON.stringify(process.env.NODE_ENV || 'production'),
       }
     })
@@ -55,9 +54,8 @@ module.exports = [{
   },
   plugins: [
     new webpack.DefinePlugin({
-      __DEVTOOLS__: false,
-      __BROWSER__: true,
       'process.env': {
+        BROWSER: true,
         NODE_ENV: JSON.stringify(process.env.NODE_ENV || 'production'),
       }
     })

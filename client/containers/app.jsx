@@ -5,13 +5,18 @@ import Poller from '../containers/poller';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import fetch from 'isomorphic-fetch';
+import { Link } from 'react-router';
 
 class App extends Component {
   render() {
     const { teams, requestVote, updateVote } = this.props;
     return (
       <Poller updateVote={updateVote}>
-        <TeamList teams={teams} vote={requestVote} />
+        <div>
+          <Link to="/super">superfan</Link>
+          <TeamList teams={teams} vote={requestVote} />
+          {this.props.children}
+        </div>
       </Poller>
     );
   }
